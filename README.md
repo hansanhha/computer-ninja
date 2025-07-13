@@ -2,6 +2,7 @@
 
 언어
 - [자바](./java)
+- [Go](./go)
 
 프레임워크
 - [스프링 데이터 JPA + QueryDSL](./spring-data-jpa+querydsl)
