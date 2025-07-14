@@ -5,7 +5,7 @@
 - [Go](./go)
 
 프레임워크
-- [스프링 데이터 JPA + QueryDSL](./spring-data-jpa+querydsl)
+- [스프링](./spring)
 
 데이터베이스
 - [MySQL](./mysql)
