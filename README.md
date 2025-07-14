@@ -15,5 +15,5 @@
 - [testcontainers](./testcontainers)
 - [CLI](./cli)
 
-키워드
-- [데이터베이스 키워드](./docs/데이터베이스%20키워드.md)
+에디터
+- [vscode](./editors/vscode.md)
