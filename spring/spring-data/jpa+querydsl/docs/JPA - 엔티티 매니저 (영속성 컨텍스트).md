@@ -54,7 +54,7 @@
 
 엔티티는 아래의 이미지와 같이 영속성 컨텍스트에 의해 관리되는 상태를 가진다 [이미지 출처](https://medium.com/javarevisited/spring-data-jpa-entity-lifecycle-model-c67fdae2d0c2)
 
-![entity persistence lifecycle](../assets/entity-persistence-lifecycle.png)
+![entity persistence lifecycle](./assets/entity-persistence-lifecycle.png)
 
 NEW 상태는 새로 생성된 객체(엔티티)이며 아직 영속성 컨텍스트에 등록되지 않은 비영속 상태를 의미한다 (persist 호출 전)
 

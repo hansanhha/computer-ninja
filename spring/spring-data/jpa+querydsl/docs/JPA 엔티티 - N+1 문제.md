@@ -224,7 +224,7 @@ public record PostDto(String title, String username) {
 public interface PostRepository extends CrudRepository<Post, Long> {
     
     // DTO 프로젝션을 사용하여 필요한 정보만 메모리에 로딩한다
-    @Query("SELECT new db.ninja.n1_problem.PostDto(p.title, u.username) " +
+    @Query("SELECT new n1_problem.hansanhha.PostDto(p.title, u.username) " +
             "FROM Post p " +
             "JOIN p.user u")
     List<PostDto> findAllProjection();
