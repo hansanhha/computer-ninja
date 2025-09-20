@@ -1,0 +1,30 @@
+package hansanhha.argument_resolver;
+
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.test.web.servlet.MockMvc;
+
+@WebMvcTest(UserController.class)
+public class UserControllerTest {
+    
+    @Autowired
+    private MockMvc mockMvc;
+
+    @Test
+    void currentUserResolver_cannotInjectUser() throws Exception {
+        mockMvc.perform(get("/users/me"))
+                .andExpect(status().isUnauthorized());
+    }
+
+    @Test
+    void currentUserResolver_shouldInjectUser() throws Exception {
+        mockMvc.perform(get("/users/me").header("X-Auth-Token", "hansanhha"))
+        .andExpect(status().isOk())
+        .andExpect(jsonPath("$.id").value("hansanhha"));
+    }
+}

@@ -1,0 +1,5 @@
+{
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "java.configuration.detectJdksAtStart": false,
+    "java.configuration.runtimes": []
+}
