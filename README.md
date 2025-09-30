@@ -1,19 +1,17 @@
-## computer ninja 🥷
+# 🥷
 
-언어
-- [자바](./java)
-- [Go](./go)
+[Java](./java)
 
-프레임워크
-- [스프링](./spring)
+[Golang](./go)
 
-데이터베이스
-- [MySQL](./mysql)
-- [PostgreSQL](./postgresql)
+[Spring](./spring)
 
-도구
-- [testcontainers](./testcontainers)
-- [CLI](./cli)
+[MySQL](./mysql)
 
-에디터
-- [vscode](./editors/vscode.md)
+[PostgreSQL](./postgresql)
+
+[Testcontainers](./testcontainers)
+
+[CLI](./cli)
+
+[Visual-Studio Code](./editors/vscode.md)
