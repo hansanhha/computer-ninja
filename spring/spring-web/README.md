@@ -533,7 +533,7 @@ public class LocaleControllerTest {
 - 요청 바디와 헤더를 함께 객체로 받을 수 있다
 - RequestEntity는 메서드, URL 등 더 많은 요청 정보를 포함한다
 - ```java
-    @PostMapping("/http-entity")
+    @PostMapping("/http-hansanhha.entity")
     public ResponseEntity<String> handleEntity(HttpEntity<String> requestEntity) {
         String body = requestEntity.getBody();
         HttpHeaders headers = requestEntity.getHeaders();
