@@ -1,0 +1,14 @@
+package hansanhha;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+public class SpringIntegrationApplicationTest {
+    
+    @Test
+    void contextLoads() {
+        
+    }
+    
+}
