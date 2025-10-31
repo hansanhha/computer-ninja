@@ -6,4 +6,6 @@
 
 [스프링 데이터 레디스](./spring-data-redis/README.md)
 
+[스프링 배치](./spring-batch/README.md)
+
 [스프링 통합](./spring-integration/README.md)

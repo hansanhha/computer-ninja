@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-SpringBatchApplication<spring-batch>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "hansanhha.SpringBatchApplication",
+            "projectName": "spring-batch",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
