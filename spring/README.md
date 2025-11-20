@@ -1,11 +1,13 @@
-[스프링 부트](./spring-boot/README.md)
+[Spring Boot](./spring-boot/README.md)
 
-[스프링 웹 MVC](./spring-web/README.md)
+[Spring Web MVC](./spring-web/README.md)
 
-[스프링 데이터 JPA + Querydsl](./spring-data-jpa/README.md)
+[Spring Data JPA + Querydsl](./spring-data-jpa/README.md)
 
-[스프링 데이터 레디스](./spring-data-redis/README.md)
+[Spring Data Redis](./spring-data-redis/README.md)
 
-[스프링 배치](./spring-batch/README.md)
+[Spring Batch](./spring-batch/README.md)
 
-[스프링 통합](./spring-integration/README.md)
+[Spring Cloud](./spring-cloud/README.md)
+
+[Spring Integration](./spring-integration/README.md)
