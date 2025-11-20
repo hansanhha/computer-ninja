@@ -1,17 +1,19 @@
 # 🥷
 
-[Java](./java)
+[Java](./java/README.md)
 
-[Golang](./go)
+[Spring](./spring/README.md)
 
-[Spring](./spring)
+[Gradle](./gradle/README.md)
 
-[MySQL](./mysql)
+[Golang](./go/README.md)
 
-[PostgreSQL](./postgresql)
+[MySQL](./mysql/README.md)
 
-[Testcontainers](./testcontainers)
+[PostgreSQL](./postgresql/README.md)
 
-[CLI](./cli)
+[Testcontainers](./testcontainers/README.md)
+
+[CLI](./cli/README.md)
 
 [Visual-Studio Code](./editors/vscode.md)

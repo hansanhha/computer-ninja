@@ -39,6 +39,7 @@ replay_pid*
 ### Gradle
 .gradle
 **/build/
+**/bin/
 !src/**/build/
 gradle-app.setting
 !gradle-wrapper.jar
