@@ -10,4 +10,6 @@
 
 [Spring Cloud](./spring-cloud/README.md)
 
+[Spring Modulith](./spring-modulith/README.md)
+
 [Spring Integration](./spring-integration/README.md)
