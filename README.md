@@ -16,4 +16,6 @@
 
 [CLI](./cli/README.md)
 
+[GitHub](./github/README.md)
+
 [Visual-Studio Code](./editors/vscode.md)
