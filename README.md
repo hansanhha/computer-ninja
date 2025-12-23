@@ -8,6 +8,8 @@
 
 [Gradle](./gradle/README.md)
 
+[C](./c/README.md)
+
 [Golang](./go/README.md)
 
 [MySQL](./mysql/README.md)

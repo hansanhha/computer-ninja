@@ -1,0 +1,3 @@
+void render(World& world)
+{
+}
