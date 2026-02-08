@@ -1,6 +1,6 @@
-[JCP, JSR, JEP](#jcp-jsr-jep)
+#### 인덱스
 
-[주요 문법 요약](#주요-문법-요약)
+
 
 [LTS 핵심 키워드](#lts-핵심-키워드)
 
@@ -18,34 +18,7 @@
 
 [Null-restricted Type](#null-restricted-type)
 
-
-## JCP, JSR, JEP
-
-[JCP (Java Community Process)](https://www.jcp.org/en/home/index)
-- 자바 기술의 표준을 만들고 관리하는 총괄 기구
-- 자바 언어나 플랫폼에 공식적으로 추가되기 위한 모든 절차를 담당한다
-
-[JSR (Java Specification Request)](https://www.jcp.org/ja/jsr/overview)
-- 자바의 기능 추가/개선 사항을 JCP에 제출하는 공식 제안서
-- 제출된 JSR는 검토, 참조 구현, 테스트 도구 모음(Test Compatability Kit, TCK) 개발 등의 과정을 거쳐 최종 명세로 승인된다
-- 참조 구현과 TCK가 모두 준비되면 최종 투표를 통해 JSR이 최종적으로 승인되고, 승인된 기능은 이후 자바 공식 버전(JDK)에 포함될 수 있다
-
-![jsr life cycle](https://www.jcp.org/images/JSR_Life_Cycle_Dec2018.png)
-
-[JEP](https://openjdk.org/jeps/0)
-- JDK의 새로운 기능이나 개선 사항을 제안하는 공식 문서
-- JSR은 자바 언어와 플랫폼 전반을 다루고, JEP는 JDK의 특정 기능의 세부 구현에 초점을 맞춘다
-- JSR과 별개로 OpenJDK 커뮤니티에서 제안 및 검토되며 최종적으로 JDK의 특정 버전에 포함될지 결정된다
-- Draft -> Candidate -> Funding -> Featured -> Rejected -> Completed
-- Draft 상태인 JEP는 프리뷰 또는 인큐베이터로써 기능이 일시적으로 제공될 수 있다
-- [JEP 444: 가상 스레드](https://openjdk.org/jeps/444)
-
-![jep workflow](https://cr.openjdk.org/~mr/jep/jep-2.0-fi.png)
-
-
-## 주요 문법 요약
-
-### 기본
+## 기본 문법
 
 변수 선언
 
@@ -55,65 +28,74 @@
 ```
 
 기본 자료형
-- 정수: byte(1), short(2), int(4, default), long(8)
-- 부동소수점: float(4), double(8, default) 
-- 문자: char(2) (UTF-16)
-- 참/거짓: boolean(1~4)
+- 정수: `byte`(1), `short`(2), `int`(4, default), `long`(8)
+- 부동소수점: `float`(4), `double`(8, default) 
+- 문자: `char`(2) (UTF-16)
+- 참/거짓: `boolean`(1~4)
 
 제어문
-- 조건: if, switch, instanceof pattern
-- 반복: for, while, do-while
-- 분기: break, continue, return
+- 조건: `if`, `switch`, `instanceof`
+- 반복: `for`, `while`, `do-while`
+- 분기: `break`, `continue`, `return`
 
 문자열
 - text block
 - string templates
 
-지역 변수 타입 추론: var
+지역 변수 타입 추론: `var`
 
-Project Amber
+기타
 - unnamed patterns
 - unnamed variable
 - unnamed classes & main
-
-Project Valhalla
 - primitive class (value class)
 
-### 객체 지향
+
+## 객체지향 예약어
 
 클래스
-- class: 필드와 메서드를 가질 수 있는 클래스
-- interface: 추상 메서드와 상수 집합만을 가질 수 있는 타입으로 클래스들이 특정 기능을 구현하도록 계약(contract)를 정의한다. `default`, `static` 메서드를 선언할 수 있다
-- enum: 상수 집합을 정의할 수 있는 클래스 (enum의 모든 요소에 대한 인스턴스는 런타임에 자동으로 생성된다)
-- @interface: 코드에 대한 메타데이터를 제공하는 인터페이스, 컴파일러나 런타임 환경에 특별한 처리를 할 수 있도록 정보를 제공한다
-- record: 불변 데이터 전달(DTO)에 특화된 클래스. 레코드 헤더를 기반으로 필드, 생성자, `equals()`, `hashCode()`, `toString()` 메서드를 컴파일러가 대신 생성해준다
-- sealed class: 상속을 허용하는 클래스를 특정 클래스나 인터페이스로만 제한하는 기법
-- value class: 값으로만 식별되는 클래스로 스택이나 배열에 직접 할당되며 불변이고 null이 될 수 없다
+- `class`: 필드(상태)와 메서드(행위)를 가질 수 있는 객체
+- `interface`: 추상 메서드와 상수 집합만을 가질 수 있는 특수 클래스. 클래스들이 특정 기능을 구현하도록 계약(contract)를 정의한다. `default`, `static` 메서드를 선언할 수 있다 (static 메서드는 오버라이드 불가)
+- `enum`: 상수 집합을 정의할 수 있는 클래스 (enum의 모든 요소에 대한 인스턴스는 런타임에 불변형으로 자동 생성된다)
+- `@interface`: 코드에 대한 메타데이터를 제공하는 인터페이스, 컴파일러나 런타임 시점에 특별한 처리를 할 수 있도록 정보를 제공한다
+- `record`: 불변 데이터 전달(DTO)에 특화된 클래스. 레코드 헤더를 기반으로 필드, 생성자, `equals()`, `hashCode()`, `toString()` 메서드를 컴파일러가 대신 생성해준다
+- `sealed class`: 특정 클래스나 인터페이스에게만 상속을 제한적으로 허용하는 클래스
+- `value class`: 값으로만 식별되는 클래스. 스택이나 배열에 직접 할당되며 불변이고 null이 될 수 없다
 
 상속/확장
-- abstract: 추상 클래스 또는 메서드를 정의한다
-- extends: 특정 클래스를 상속한다
-- implements: 특정 인터페이스를 구현한다
-- final: 더 이상 상속/확장할 수 없음을 나타낸다
-- sealed: 특정 클래스/인터페이스에게만 상속을 허용하고자 할 때 사용한다
-- permit: 상속을 허용할 클래스/인터페이스를 명시한다
-- non-sealed: sealed 클래스를 상속받는 클래스가 더 이상 봉인되지 않고 어떤 클래스든 상속받을 수 있도록 허용한다
+- `abstract`: 추상 클래스 또는 메서드를 정의한다
+- `extends`: 특정 클래스를 상속한다
+- `implements`: 특정 인터페이스를 구현한다
+- `final`: 더 이상 상속/확장할 수 없음을 나타낸다
+- `sealed`: 자신을 특정 클래스/인터페이스에게만 상속을 허용하고자 할 때 사용한다
+- `permit`: 자신을 상속할 수 있는 클래스/인터페이스를 명시한다
+- `non-sealed`: `sealed` 클래스를 상속받는 클래스가 더 이상 봉인되지 않고 어떤 클래스든 상속받을 수 있도록 허용한다
 
 참조
-- this: 메모리에 할당된 인스턴스 자기 자신을 가리킨다 (현재 실행 중인 객체의 실제 타입)
-- super: this의 부모 타입을 가리킨다
-- this(): 현재 실행 중인 객체의 생성자를 가리킨다
-- super(): 현재 실행 중인 객체의 부모 생성자를 가리킨다
+- `this`: 메모리에 할당된 인스턴스 자기 자신을 가리킨다 (현재 실행 중인 객체의 실제 타입을 가리킴)
+- `super`: this의 부모 타입을 가리킨다
+- `this()`: 현재 실행 중인 객체의 생성자를 가리킨다
+- `super()`: 현재 실행 중인 객체의 부모 생성자를 가리킨다
 
 접근 제어자
-- public: 모든 곳에서 접근할 수 있다
-- protected: 같은 패키지 또는 상속받은 객체만 접근할 수 있다
+- `public`: 모든 곳에서 접근할 수 있다
+- `protected`: 같은 패키지 또는 상속받은 객체만 접근할 수 있다
 - package-private (default): 같은 패키지에서만 접근할 수 있다
-- private: 객체 내부에서만 접근할 수 있다
+- `private`: 객체 내부에서만 접근할 수 있다
 
-### 제네릭
+## 제네릭
+
+제네릭 타입
+- 제네릭을 선언한 타입(클래스, 인터페이스 등)
+- `FruitBox<T>`
+- `Supplier<R>`
+- `Function<T, R>`
 
 타입 매개변수
+- 제네릭 클래스나 메서드가 받을 데이터 타입에 대한 매개변수
+- int 타입 파라미터에 여러 값(1, 5, 10 등)을 전달할 수 있는 것처럼 '타입' 자체를 매개변수화하여 여러 타입을 전달할 수 있게 한다
+- 따라서 제네릭을 사용하면 기본적으로 모든 객체 타입을 받을 수 있는데 이를 와일드카드나 바운드로 범위를 제한할 수 있다
+- 일반적으로 사용되는 타입 매개변수는 아래와 같다
 - `<T>`: Type
 - `<E>`: Element
 - `<N>`: Number
@@ -121,21 +103,124 @@ Project Valhalla
 - `<K, V>`: Key, Value
 - `<S>, <U>, <V>`: 2nd, 3rd, 4th Types
 
-제네릭 타입
-- `FruitBox<T>`
-- `Supplier<R>`
-- `Function<T, R>`
-
 매개변수화된 타입
+- 제네릭 클래스에 실제 데이터 타입이 전달된 상태 (정확히는 해당 인스턴스에 특정 데이터 타입이 전달되어 결정된 상태)
+- 실제 지정된 타입은 컴파일 시점에만 유효하다 (`FruitBox<Apple>`은 런타임에 `FruitBox<Object>`가 됨)
 - `FruitBox<Apple>`
 - `FruitBox<Orange>`
-- `Supplier<FruitBox<Apple>>`
+- `Supplier<FruitBox<Apple>>` (`Supplier`와 `Function`은 자바에서 제공하는 함수형 인터페이스임)
 - `Function<Integer, Boolean>`
 
-와일드카드
-- `?`: <Object>와 동일
-- `<? extends T>`: T 및 하위 클래스 허용 - 상위 제한(upper bound), 공변
-- `<? super T>`: T 및 상위 클래스 허용 - 하위 제한(lower bound), 반공변
+제네릭 제한 (타입 매개변수)
+- 제네릭 제한은 제네릭 클래스에 허용되는 데이터 타입을 특정 클래스나 인터페이스의 자손/조상으로 한정한다
+- 지정된 타입 이외의 객체가 들어오면 컴파일러가 오류를 발생시켜 런타임 에러를 방지한다
+- `<T extends Type>`: `T`에 Type과 Type을 상속받은 자손 클래스만 허용
+- 타입 매개변수에는 `super`를 사용하여 하한을 제한할 수 없다 - 와일드카드에서만 허용된다
+- 타입 매개변수 하한 제한은 생성자 입장에서 타입이 확정되지 않기 때문에 타입 안정성을 유지할 수 없기 때문
+
+```java
+// public class Box<T super Number> 불가능
+
+public class Box<T extends Number> {
+    private T item;
+
+    public void setItem(T item) { this.item = item; }
+    public T getItem() { return item; }
+
+    // extends를 사용하여 T가 Number를 상속받았음이 보장되므로 제네릭 클래스 내에서 상위 타입 메서드 호출 가능
+    public double getDoubleValue() { return item.doubleValue(); }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Box<Integer> intBox = new Box(); // 가능
+        Box<String> strBox = new Box(); // 컴파일 오류 
+    }
+}
+```
+
+제네릭 제한 (와일드카드)
+- 타입 매개변수(`<T>` 등)는 특정 타입을 정의하여 코드 내에서 재사용한다 (메서드, 클래스 내에서 `T` 재사용 가능)
+- 반면 와일드카드는 알 수 없는 타입을 제한하고 PECS(Producer-Extends, Consumer-Super)을 통해 유연성을 높일 수 있지만 코드 내에서 재사용이 불가능하며 특정 타입으로 고정시킬 수 없다
+- `?`: <Object>와 동일 (Unbounded)
+- `<? extends T>`: `T`와 하위 클래스만 허용 - 상위 제한(upper bound) 또는 공변 (Producer-Extends)
+- `<? super T>`: `T`와 상위 클래스만 허용 - 하위 제한(lower bound) 또는 반공변 (Consumer-Super)
+- **`<T extends ...>`는 타입을 정의하는 것**
+- **`<? extends T`>는 이미 정의된 타입을 제한해서 사용하는 것**
+
+```java
+// T라는 이름의 타입 매개변수 정의
+// Number의 하위 타입만 허용한다
+// 한 번 정해지면 끝까지 동일한 타입이고, 컴파일러는 결정된 T가 무엇인지 알고 있다
+// 클래스, 메서드 내에서 T를 자유롭게 사용할 수 있다
+class Box<T extends Number> {
+    private T value;
+
+    T get() { return value; }
+}
+
+// T는 하나의 고정된 타입이다
+Box<Integer> box = new Box<>();
+Box<Double> box2 = new Box<>();
+```
+
+```java
+// 타입 매개변수의 이름이 없다
+// 'Number의 하위 타입 중 하나'를 의미한다
+// 타입 매개변수와 달리 매번 다른 하위 타입일 수 있고 컴파일러는 구체적인 타입을 모른다
+void print(List<? extends Number> list) {
+
+    for (int i = 0; i < list.size(); i++) {
+        // Number까지는 확실하나 정확히 무슨 타입인지는 알 수 없다
+        Number n = list.get(i);
+    }
+}
+```
+
+```java
+// <T extends ...>는 읽고 쓸 수 있다
+class Box<T extends Number> {
+    void set(T item) { this.item = item; }
+    T get() { return item; }
+}
+
+// <? extends T>는 읽을 수만 있다
+void add(List<? extends Number> list) {
+    list.add(10);   // 컴파일 에러
+    list.add(null); // 유일하게 가능
+}
+```
+
+일반적으로 API를 구현할 때는 `<T extends ...>`를, API를 사용할 때는 `<? extends ...>`를 사용한다
+
+```java
+// 타입 간 관계가 중요하며 동일한 T를 여러 곳에서 사용하는 상황
+public <T extends Comparable<T>> T max(T a, T b) {
+    return a.compareTo(b) ? a : b;
+}
+```
+
+```java
+// 타입을 유연하게 받되 읽기만 해도 충분한 상황
+public void printAll(List<? extends Number> numbers) {
+    numbers.forEach(System.out::println);
+}
+```
+
+PECS(Producer-Extends, Consumer-Super)
+- 데이터를 꺼내기만 하면 `extends` (`list.get(i)`)
+- 데이터를 넣기만 하면 `super` (`list.set(i)`)
+
+```java
+void read(List<? extends Number> list) { }
+void write(List<? super Integer> list) { }
+```
+
+`<? extends T>`
+- `T`는 고정된 특정 타입 매개변수를 말한다
+- `?`는 특정 타입으로 제한되지 않는 타입 매개변수이다
+- `T`를 모르고 `<? extends T>`도 정확히 모르기 때문에 대부분의 경우 의미가 불분명하다
+- 틀린 문법은 아니지만 상황에 맞도록 `<? extends ...>` 또는 `<T extends ...>`를 사용하는 게 코드를 명확하게 작성할 수 있는 방법이다
 
 제네릭 메서드
 - `<T> T method(T param)`

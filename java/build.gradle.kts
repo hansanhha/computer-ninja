@@ -19,14 +19,14 @@ dependencies {
 
 java {
     toolchain {
-        languageVersion.set(JavaLanguageVersion.of(24))
+        languageVersion.set(JavaLanguageVersion.of(25))
     }
     sourceCompatibility = JavaVersion.VERSION_24
     targetCompatibility = JavaVersion.VERSION_24
 }
 
 tasks.withType<JavaCompile> {
-    options.release.set(24)
+    options.release.set(25)
     options.compilerArgs.add("--enable-preview")
 }
 
