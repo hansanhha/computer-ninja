@@ -1,5 +1,7 @@
 [Window Function](./window_function.md)
 
+[Utility Function](./utility_function.md)
+
 Subquery/CTE
 
 String/Date
