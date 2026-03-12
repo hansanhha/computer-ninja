@@ -3,6 +3,7 @@
 - [CONVERT](#convert)
 - [ISNULL](#isnull)
 - [COUNT](#count)
+- [REPLACE](#replace)
 
 ## CAST
 
@@ -156,4 +157,31 @@ GROUP BY department;
 -- 결과적으로 COUNT(*)와 동일한 결과가 된다
 SELECT COUNT(ISNULL(salary, 0))
 FROM employees;
+```
+
+
+## REPLACE
+
+문자열 안에서 찾은 모든 대상 문자열을 다른 문자열로 바꾸는 함수이다
+
+```sql
+REPLACE (문자열 표현식, 대상 문자열, 변환할 문자열)
+```
+
+```sql
+-- World 문자열을 SQL로 변경
+-- Hello SQL
+SELECT REPLACE('Hello World', 'World', 'SQL');
+```
+
+| 코드         | 의미                       |
+| ---------- | ------------------------ |
+| `CHAR(9)`  | 탭 (Tab)                  |
+| `CHAR(10)` | 줄바꿈 (Line Feed)          |
+| `CHAR(13)` | 캐리지 리턴 (Carriage Return) |
+
+```sql
+-- A.Message의 캐리지 리턴(줄 바꿈)을 ''으로 변경
+-- 줄바꿈을 완전히 제거하려면 아래와 같이 두개를 제거함
+REPLACE(REPLACE(A.Message, CHAR(13), ''), CHAR(10), '')
 ```
