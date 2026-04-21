@@ -85,13 +85,13 @@
 
 ## 제네릭
 
-제네릭 타입
+### 제네릭 타입
 - 제네릭을 선언한 타입(클래스, 인터페이스 등)
 - `FruitBox<T>`
 - `Supplier<R>`
 - `Function<T, R>`
 
-타입 매개변수
+### 타입 매개변수
 - 제네릭 클래스나 메서드가 받을 데이터 타입에 대한 매개변수
 - int 타입 파라미터에 여러 값(1, 5, 10 등)을 전달할 수 있는 것처럼 '타입' 자체를 매개변수화하여 여러 타입을 전달할 수 있게 한다
 - 따라서 제네릭을 사용하면 기본적으로 모든 객체 타입을 받을 수 있는데 이를 와일드카드나 바운드로 범위를 제한할 수 있다
@@ -103,15 +103,16 @@
 - `<K, V>`: Key, Value
 - `<S>, <U>, <V>`: 2nd, 3rd, 4th Types
 
-매개변수화된 타입
+### 매개변수화된 타입
 - 제네릭 클래스에 실제 데이터 타입이 전달된 상태 (정확히는 해당 인스턴스에 특정 데이터 타입이 전달되어 결정된 상태)
 - 실제 지정된 타입은 컴파일 시점에만 유효하다 (`FruitBox<Apple>`은 런타임에 `FruitBox<Object>`가 됨)
+- **클래스 제네릭은 객체 생성 시점에 타입이 결정되며 해당 타입 매개변수는 클래스 전체에 유효하다**
 - `FruitBox<Apple>`
 - `FruitBox<Orange>`
 - `Supplier<FruitBox<Apple>>` (`Supplier`와 `Function`은 자바에서 제공하는 함수형 인터페이스임)
 - `Function<Integer, Boolean>`
 
-제네릭 제한 (타입 매개변수)
+### 제네릭 제한 (타입 매개변수)
 - 제네릭 제한은 제네릭 클래스에 허용되는 데이터 타입을 특정 클래스나 인터페이스의 자손/조상으로 한정한다
 - 지정된 타입 이외의 객체가 들어오면 컴파일러가 오류를 발생시켜 런타임 에러를 방지한다
 - `<T extends Type>`: `T`에 Type과 Type을 상속받은 자손 클래스만 허용
@@ -139,7 +140,7 @@ public class Main {
 }
 ```
 
-제네릭 제한 (와일드카드)
+### 제네릭 제한 (와일드카드)
 - 타입 매개변수(`<T>` 등)는 특정 타입을 정의하여 코드 내에서 재사용한다 (메서드, 클래스 내에서 `T` 재사용 가능)
 - 반면 와일드카드는 알 수 없는 타입을 제한하고 PECS(Producer-Extends, Consumer-Super)을 통해 유연성을 높일 수 있지만 코드 내에서 재사용이 불가능하며 특정 타입으로 고정시킬 수 없다
 - `?`: <Object>와 동일 (Unbounded)
@@ -207,24 +208,168 @@ public void printAll(List<? extends Number> numbers) {
 }
 ```
 
-PECS(Producer-Extends, Consumer-Super)
-- 데이터를 꺼내기만 하면 `extends` (`list.get(i)`)
-- 데이터를 넣기만 하면 `super` (`list.set(i)`)
+### PECS(Producer-Extends, Consumer-Super)
+- 데이터를 꺼내기만 하면 `extends` (`list.get(i)`) - 읽기 전용
+- 데이터를 넣기만 하면 `super` (`list.set(i)`) - 쓰기 전용
 
 ```java
 void read(List<? extends Number> list) { }
 void write(List<? super Integer> list) { }
 ```
 
-`<? extends T>`
+### `<? extends T>`
 - `T`는 고정된 특정 타입 매개변수를 말한다
 - `?`는 특정 타입으로 제한되지 않는 타입 매개변수이다
 - `T`를 모르고 `<? extends T>`도 정확히 모르기 때문에 대부분의 경우 의미가 불분명하다
 - 틀린 문법은 아니지만 상황에 맞도록 `<? extends ...>` 또는 `<T extends ...>`를 사용하는 게 코드를 명확하게 작성할 수 있는 방법이다
 
-제네릭 메서드
-- `<T> T method(T param)`
-- `<T extends Fruit> T getFruit(String name)`
+### 제네릭 메서드
+- 메서드 자체가 타입 매개변수를 선언하는 메서드를 말한다
+- 클래스가 제네릭일 필요가 없으며, 클래스의 제네릭과 별도로 취급된다
+- **메서드 호출 시점에 타입이 결정된다**
+
+```java
+// <T>는 리턴 타입이 아닌 제네릭 머서드의 타입 매개변수이다
+// 제어자와 리턴 타입 사이에 위치한다
+// <T>의 스코프는 메서드에 한정된다
+public static <T> void print(T value) {
+    System.out.println(value);
+}
+```
+
+```java
+// Comparable<T>의 하위 타입만 허용
+public static <T extends Comparable<T>> T max(T a, T b) {
+    return a.compareTo(b) >= 0 ? a : b;
+}
+```
+
+#### 타입 명시 호출
+- 타입 추론이 실패할 때 사용한다
+- 스트림이나 람다에서 가끔 등장함
+
+```java
+// print 메서드의 <T> 타입 매개변수를 <String>으로 명시적으로 지정한다
+Utils.<String>print("hello");
+```
+
+### static 메서드에서 클래스 제네릭을 사용하지 못하는 이유
+
+클래스 제네릭은 객체가 생성될 때 확정되는 반면, static은 클래스 로딩 시점에 존재하므로 타입 매개변수가 결정될 수가 없다
+
+따라서 컴파일러는 타입 매개변수가 무엇인지 알 수 없으므로 클래스의 제네릭을 사용할 수 없다
+
+```java
+class Box<T> {
+    T value;
+}
+
+// 이 시점에 box1 인스턴스에 한해서 <T>는 <String>으로 확정된다
+Box<String> box1 = new Box<>();
+```
+
+대신 메서드 제네릭을 사용하면 클래스 제네릭과 무관하고 호출 시점에 타입이 결정되므로 static에서도 제네릭을 선언할 수 있다
+
+```java
+Class Utils {
+    static <T> T identity(T value) {
+        return value;
+    }
+}
+```
+
+### 타입 소거
+
+타입 소거란 런타임에 타입 정보를 제거하는 것을 말한다
+
+컴파일 타임에만 컴파일러가 타입을 체크하고 런타임에는 이를 제거한다
+
+```java
+// 컴파일 시점
+List<String>
+List<Integer>
+
+// 컴파일 후
+List
+List
+```
+
+따라서 아래와 같은 제약이 생긴다
+
+```java
+class Utils<T> {
+
+    // 런타임에는 T가 무엇인지 알 수 없기 때문에 클래스 생성 불가능
+    <T> T create() {
+        return new T();
+    }
+
+    // T는 런타임에 지워지므로 비교할 수 없다
+    if (obj instanceof T) {
+    }
+
+    // 배열은 정해지지 않은 타입으로 만들 수 없다
+    T[] arr = new T[size];
+}
+```
+
+이러한 제약을 다음과 같이 우회할 수 있다
+
+```java
+class Utils<T> {
+
+
+    // 제네릭 메서드는 호출 시점에 타입이 결정되므로 컴파일러가 어떤 타입인지 알 수 있다
+    // create(User.class) 호출 시 컴파일러는 T가 User, 반환 타입이 User라는 것을 안다
+    // 런타임에는 class가 User.class가 되고 리플렉션으로 User 객체를 생성한다
+    <T> T create(Class<T> clazz) throws Exception {
+
+        // 해당 클래스에 선언된 생성자 중 파라미터 없는 생성자를 통해 새 인스턴스를 생성한다 (private/protected 포함)
+        return clazz.getDeclaredConstructor().newInstance();
+    }
+
+    // 배열 대신 컬렉션을 사용한다
+    List<T> getList(int size) {
+        return new ArrayList<>();
+    }
+}
+```
+
+### ParameterizedType
+
+제네릭은 런타임에 소거되지만 '선언 정보'는 클래스 메타데이터에 남아 있다
+
+이 메타데이터를 읽기 위한 인터페이스가 `ParameterizedType`이다
+
+`List<String>` `Map<String, Integer>` 등 제네릭이 적용된 타입을 런타임에 표현한다
+
+```java
+public class ParameterizedType_sample {
+    
+    void main() throws NoSuchFieldException {
+        Field field = Box.class.getDeclaredField("items");
+        Type type = field.getGenericType();
+        
+        if (type instanceof ParameterizedType pt) {
+            Type raw = pt.getRawType();                 // List
+            Type[] args = pt.getActualTypeArguments();  // String
+
+            System.out.println(raw); 
+            System.out.println(args[0]);
+        }
+    }
+}
+
+class Box {
+    List<String> items;
+}
+```
+
+**참고로 지역 변수의 제네릭 선언 정보는 클래스 메타데이터에 남지 않는다**
+
+JVM은 지역 변수 제네릭 정보를 저장하지 않기 때문에 디버깅으로 확인해야 한다
+
+TypeReference - Jackson , Spring이 제네릭 리포지토리를 인식하는 방법부터 시작 
 
 ### 예외 처리
 

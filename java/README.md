@@ -1,24 +1,24 @@
 [자바 생태계](./docs/ecosystem.md)
 
-[문법](./docs/syntax.md) 클래스, Enum, Record, Sealed Class, var, 제네릭, 패턴 매칭, 텍스트 블록, 함수형
+[문법](./docs/syntax.md)
 
-[컬렉션 프레임워크]() List/Set/Map/Queue/Deque, Immutable Collections, Concurrent Collections, SequencedCollection
+컬렉션 프레임워크
 
-[스레드/동시성](./docs/thread.md) Thread, ExecutorService, volatile, ReentrantLock, CompletableFuture, ForkJoinPool, Virtual Threads, Structured Concurrency
+[스레드/동시성](./docs/thread.md)
 
-[JVM]() 클래스 로딩/클래스패스, 바이트코드 분석, GC 전략, JVM 옵션, JIT
+JVM
 
-[네이티브]() AOT, GraalVM, 네이티브 이미지, 네이티브 코드 - JNI, Project Panama 기반 FFI, MemorySegment, MemoryLayout, Linker, SymbolLookup
+네이티브
 
-[입출력]() InputStream/OutputStream, Reader/Writer, nio, Memory-mapped I/O, Buffered vs Unbuffered, Stream + I/O
+입출력
 
-[네트워크]() Socket, ServerSocket, HttpURLConnection, HttpClient, Jackson, WebSocket
+네트워크
 
-[유틸리티]() 날짜/시간, 문자열 처리, 로그 처리
+유틸리티
 
-[보안]() MessageDigest, Signature, KeyPairGenerator, Cipher, AES/PSA
+보안
 
-[도구]() JMeter, Checkstyle, SonarQube, JVisualVM, JMC, JFR, JShell
+JDK
 
 
 [inside.java](https://inside.java/tags)

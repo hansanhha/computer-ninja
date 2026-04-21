@@ -21,8 +21,6 @@ java {
     toolchain {
         languageVersion.set(JavaLanguageVersion.of(25))
     }
-    sourceCompatibility = JavaVersion.VERSION_24
-    targetCompatibility = JavaVersion.VERSION_24
 }
 
 tasks.withType<JavaCompile> {

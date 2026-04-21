@@ -1,5 +1,7 @@
 # 🥷
 
+[Server](./server/README.md)
+
 [Network](./network/README.md)
 
 [Java](./java/README.md)
