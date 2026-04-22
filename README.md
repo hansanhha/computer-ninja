@@ -14,6 +14,8 @@
 
 [Golang](./go/README.md)
 
+[Swift](./swift/README.md)
+
 [MySQL](./mysql/README.md)
 
 [PostgreSQL](./postgresql/README.md)
