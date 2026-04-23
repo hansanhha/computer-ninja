@@ -1,6 +1,6 @@
 [스위프트](./swift.md)
 
-[기본 문법](./syntax.md)
+[문법](./syntax.md)
 
 iOS 기본 구조
 - 앱 생명주기
