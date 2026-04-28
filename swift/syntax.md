@@ -15,7 +15,7 @@
 - [enum](#enum)
 - [프로토콜](#프로토콜)
 - [익스텐션](#익스텐션)
-- [제네릭]()
+- [제네릭](#제네릭)
 
 
 ## 기본사항
@@ -1622,7 +1622,13 @@ class ExampleClass: ExampleProtocol {
 
 ## 익스텐션
 
-익스텐션은 기존 타입을 건드리지 않고 기능을 추가할 수 있다
+익스텐션은 기존 타입을 건드리지 않고 기능을 추가할 수 있다 (기존 기능을 오버라이드할 수는 없음)
+- 계산 속성/계산 타입 속성 추가
+- 인스턴스 메서드/타입 메서드 정의
+- 새로운 이니셜라이저 정의
+- 서브스크립트 정의
+- 새로운 중첩 타입 정의와 사용
+- 기존 타입에 프로토콜 적용
 
 ```swift
 // 구조
@@ -1630,6 +1636,29 @@ extension 기존타입 {
     // 기능 추가
 }
 ```
+
+### 계산 속성/계산 타입 속성 추가
+
+```swift
+extension Double {
+    var km: Double { return self * 1_000.0 }
+    var m: Double { return self }
+    var cm: Double { return self / 100.0 }
+    var mm: Double { return self / 1_000.0 }
+    var ft: Double { return self / 3.28084 }
+}
+
+let oneInch = 25.4.mm
+let threeFeet = 3.ft
+```
+
+### 새로운 이니셜라이저 정의
+
+익스텐션은 클래스에 편의 이니셜라이저만 추가할 수 있으며 지정 이니셜라이저나 디이니셜라이저는 추가할 수 없다
+
+
+
+### 메서드 정의
 
 ```swift
 // 프로토콜에 대한 기능 추가
