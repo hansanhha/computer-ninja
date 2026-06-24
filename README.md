@@ -14,7 +14,13 @@
 
 [Golang](./go/README.md)
 
-[Javascript](./javascript/README.md)
+[JavaScript](./javascript/README.md)
+
+[TypeScript](./typescript/README.md)
+
+[React](./react/README.md)
+
+[Next.js](./nextjs/README.md)
 
 [Swift](./swift/README.md)
 

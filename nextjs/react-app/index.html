@@ -1,0 +1,77 @@
+<html>
+  <body>
+    <div id="app"></div>
+    <!-- 리액트 라이브러리를 사용하려면 다음 두 가지 스크립트를 로드한다 -->
+    <!-- react: 리액트 코어 라이브러리 -->
+    <!-- react-dom: 리액트를 DOM과 함께 사용할 수 있는 DOM 메서드를 제공하는 라이브러리 -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- <script> 태그 내의 <h1>...</h1>은 자바스크립트가 아닌 JSX 문법으로 작성된 코드이다 
+         JSX는 UI를 HTML 문법처럼 표시할 수 있게 해주는 자바스크립트 문법 익스텐션이다
+         브라우저는 JSX를 알지 못하기 때문에 Babel과 같은 자바스크립트 컴파일러를 통해 JSX 코드를 일반 자바스크립트로 변환해야 한다
+
+         바벨에게 어떤 코드를 변환해야 하는지 알려주기 위해 <script> 태그의 타입을 'text/jsx'로 변경한다
+    -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/jsx">
+        const app = document.getElementById('app');
+
+        {/* 
+            props는 HTML 속성처럼 컴포넌트에 전달할 수 있는 값으로 읽기 전용이다
+            부모 -> 자식 방향으로만 전달할 수 있다
+            객체 리터럴로 전달되기 때문에 자식 파라미터에서 디스트럭처링하여 받을 수 있다
+        */}
+        function Header({ title }) {
+            {/*{} 중괄호를 사용하면 JSX 문법 내에서 자바스크립트 코드를 사용할 수 있다 */}
+            return <h1>{title ? title : 'Default Title'}</h1>;
+        }
+
+        function HomePage() {
+            const names = ['Ada Lovelace', 'Grace Hopper', 'Margaret Hamilton'];
+
+            {/* 
+                상태란 시간 변화, 사용자 인터랙션 등으로 인해 변경될 수 있는 UI의 정보이다
+                props와 달리 상태는 컴포넌트 내에 저장된다. (상태를 자식 컴포넌트에 props로 전달할 수 있다)
+                상태를 업데이트하는 로직은 상태가 처음 초기화된 곳에 위치하는 걸 권장한다
+                
+                리액트는 컴포넌트의 '상태'에 대한 로직을 제공하는 '훅'(함수)을 제공한다  
+                훅은 배열을 반환하여 배열 디스트럭처링하여 값에 접근할 수 있다
+                첫 번째 요소: 상태 값, 두 번째 요소: 값을 업데이트하는 함수 ('set' + 상태 이름)
+            */}
+            const [likes, setLikes] = React.useState(0);
+
+            {/*
+                핸들러는 UI 요소의 트리거된 이벤트를 처리하는 함수이다
+                'handle' 접두어를 사용한다
+                handleClick 핸들러는 <button>에 등록되어, 버튼이 클릭되면 'likes' 상태값을 변경하는 업데이트 함수를 +1 인자값을 전달하여 호출한다
+            */}
+            function handleClick() {
+                setLikes(likes + 1);
+            }
+
+            return (
+                <div>
+                    <Header title="Develop. Preview. Ship."/>
+                    <ul>
+                        {
+                            names.map((name) => (
+                                <li key={name}>{name}</li>
+                            ))
+                        }
+                    </ul>
+
+                    {/* 
+                        리액트의 이벤트는 모두 카멜케이스로 네이밍된다
+                        onClick, onChange, onSubmit 등
+                    */}
+                    <button onClick={handleClick}>Like({likes})</button>
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(app);
+        root.render(<HomePage />);
+    </script>
+  </body>
+</html>
